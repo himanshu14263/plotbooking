@@ -43,4 +43,22 @@ public class StudentController
         studentService.saveOrUpdate(student);
         return student.getId();
     }
+
+    int f(int[] wt, int W, int n){
+        if(n==0)return 0;
+        if(W-wt[n-1]>=0){
+            return Math.max(wt[n-1]+f(wt,W-wt[n-1],n-1),f(wt,W,n-1));
+        }
+        else{
+            return f(wt,W,n-1);
+        }
+    }
+
+    @GetMapping("/knapsack")
+    private int test(){
+        int wt[] = new int[]{1,3,5};
+        int W = 7;
+        int n = wt.length;
+        return f(wt,W,n);
+    }
 }
